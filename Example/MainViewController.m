@@ -115,6 +115,17 @@ static CGFloat const kMaxOffset = 20;
     return (isVideo?@"Videos are also supported.":@"Of course, you can zoom in and out on the image.");
 }
 
+- (CGRect)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager finalFrameForView:(UIView *)view {
+    return CGRectMake(0.f, 0.f, self.view.frame.size.width, self.view.frame.size.height - 44.f);
+}
+
+- (UIView *)mediaFocusManagerCustomBottomView:(ASMediaFocusManager *)mediaFocusManager {
+    UIView *v = [UIView new];
+    v.backgroundColor = [UIColor redColor];
+    v.frame = CGRectMake(0.f, 0.f, self.view.frame.size.width, 44.f);
+    return v;
+}
+
 - (void)mediaFocusManagerWillAppear:(ASMediaFocusManager *)mediaFocusManager
 {
     /*

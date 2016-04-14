@@ -329,6 +329,16 @@ static CGFloat const kSwipeOffset = 100;
     [parentViewController.view addSubview:focusViewController.view];
     
     focusViewController.view.frame = parentViewController.view.bounds;
+    
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(mediaFocusManagerCustomBottomView:)]) {
+        UIView *customView = [self.delegate mediaFocusManagerCustomBottomView:self];
+        if (customView != nil) {
+            focusViewController.customBottomViewHeight = customView.frame.size.height;
+            [focusViewController.customBottomView addSubview:customView];
+        }
+    }
+    
     mediaView.hidden = YES;
     
     imageView = focusViewController.mainImageView;

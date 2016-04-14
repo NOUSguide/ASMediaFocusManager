@@ -51,6 +51,8 @@ static CGFloat const kDefaultControlMargin = 5;
         self.tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTap:)];
         [self.tapGesture requireGestureRecognizerToFail:self.doubleTapGesture];
         [self.view addGestureRecognizer:self.tapGesture];
+        
+        self.customBottomViewHeight = 0.f;
     }
 
     return self;
@@ -71,6 +73,7 @@ static CGFloat const kDefaultControlMargin = 5;
     self.titleLabel.layer.shadowOffset = CGSizeZero;
     self.titleLabel.layer.shadowRadius = 1;
     self.accessoryView.alpha = 0;
+    self.customBottomView.alpha = 0.f;
 }
 
 - (void)viewDidUnload
@@ -126,6 +129,7 @@ static CGFloat const kDefaultControlMargin = 5;
     {
         self.accessoryView.alpha = 0;
         self.playerView.alpha = 0;
+        self.customBottomView.alpha = 0.f;
     }
 }
 
@@ -137,6 +141,9 @@ static CGFloat const kDefaultControlMargin = 5;
         self.playerView.frame = self.mainImageView.bounds;
         [self layoutControlView];
     }
+    
+    self.contentView.frame = CGRectMake(0.f, 0.f, self.view.frame.size.width, self.view.frame.size.height - self.customBottomViewHeight);
+    self.customBottomView.frame = CGRectMake(0.f, self.view.frame.size.height - self.customBottomViewHeight, self.view.frame.size.width, self.customBottomViewHeight);
 }
 
 #pragma mark - Public
@@ -310,6 +317,7 @@ static CGFloat const kDefaultControlMargin = 5;
                         options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction
                      animations:^{
                          self.accessoryView.alpha = (visible?1:0);
+                         self.customBottomView.alpha = (visible?1:0);
                      }
                      completion:nil];
 }

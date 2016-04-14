@@ -24,6 +24,8 @@
 - (UIImageView *)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager imageViewForView:(UIView *)view;
 // Returns the final focused frame for this media view. This frame is usually a full screen frame. If not implemented, default is the parent view controller's view frame.
 - (CGRect)mediaFocusManager:(ASMediaFocusManager *)mediaFocusManager finalFrameForView:(UIView *)view;
+//allows us to add a custom view as a subview to the bottom of the focusViewController's view
+- (UIView *)mediaFocusManagerCustomBottomView:(ASMediaFocusManager *)mediaFocusManager;
 
 // Called when a focus view is about to be shown. For example, you might use this method to hide the status bar.
 - (void)mediaFocusManagerWillAppear:(ASMediaFocusManager *)mediaFocusManager;
