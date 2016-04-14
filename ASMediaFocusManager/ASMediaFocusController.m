@@ -246,6 +246,7 @@ static CGFloat const kDefaultControlMargin = 5;
     }
     [self.view setNeedsLayout];
     [self showAccessoryView:YES];
+    [self showCustomBottomView:YES];
     self.playerView.hidden = NO;
     [self.player play];
 }
@@ -317,6 +318,16 @@ static CGFloat const kDefaultControlMargin = 5;
                         options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction
                      animations:^{
                          self.accessoryView.alpha = (visible?1:0);
+                     }
+                     completion:nil];
+}
+
+- (void)showCustomBottomView:(BOOL)visible
+{
+    [UIView animateWithDuration:0.5
+                          delay:0
+                        options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
                          self.customBottomView.alpha = (visible?1:0);
                      }
                      completion:nil];

@@ -123,6 +123,7 @@ static CGFloat const kMaxOffset = 20;
     UIView *v = [UIView new];
     v.backgroundColor = [UIColor redColor];
     v.frame = CGRectMake(0.f, 0.f, self.view.frame.size.width, 44.f);
+    v.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     return v;
 }
 
